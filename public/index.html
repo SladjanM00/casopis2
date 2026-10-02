@@ -3,30 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
   <title>Školski časopis - Blagoje Radić</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="dashboard-body">
-  <header class="topbar">
-    <a class="brand home-brand" href="/">
+<body class="dashboard-body dashboard-v19">
+  <header class="topbar public-topbar">
+    <a class="brand home-brand" href="/" aria-label="Početna strana školskog časopisa">
       <span class="school-logo-wrap">
         <img src="/assets/logo-blagoje-radic.png" alt="Logo OŠ Blagoje Radić">
       </span>
-      <span class="school-brand-text">Školski časopis - Blagoje Radić</span>
+      <span class="school-brand-text">Školski časopis <small>OŠ „Blagoje Radić“</small></span>
+    </a>
+
+    <a class="school-site-link" href="http://osblagojeradiczupce.edu.rs" target="_blank" rel="noopener noreferrer" aria-label="Otvori zvanični sajt škole">
+      <span class="school-site-label">Zvanični sajt škole</span>
+      <span class="school-site-arrow" aria-hidden="true">↗</span>
     </a>
   </header>
 
   <main class="dashboard">
-    <section class="hero">
-      <p class="eyebrow">DIGITALNA BIBLIOTEKA</p>
-      <h1>Izaberi broj časopisa</h1>
-      <p>Klikni na naslovnicu da otvoriš časopis. Svaki broj ima svoj poseban link za deljenje.</p>
-    </section>
+    <header class="magazine-page-header">
+      <div>
+        <p class="eyebrow">DIGITALNA BIBLIOTEKA</p>
+        <h1>Školski časopisi</h1>
+        <p class="magazine-page-intro">Najnoviji brojevi, priče i radovi naših učenika. Izaberi naslovnicu i počni čitanje.</p>
+      </div>
+    </header>
 
-    <section id="magazineGrid" class="magazine-grid" aria-live="polite"></section>
-    <nav id="pagination" class="pagination" aria-label="Paginacija časopisa"></nav>
-    <div id="emptyState" class="empty-state" hidden>Još nema objavljenih časopisa.</div>
+    <section class="magazine-library" aria-label="Objavljeni časopisi">
+      <div class="magazine-library-toolbar">
+        <h2>Objavljeni brojevi</h2>
+        <span>Najnoviji su prikazani prvi</span>
+      </div>
+
+      <section id="magazineGrid" class="magazine-grid" aria-live="polite"></section>
+      <nav id="pagination" class="pagination" aria-label="Paginacija časopisa"></nav>
+      <div id="emptyState" class="empty-state" hidden>Još nema objavljenih časopisa.</div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <strong>Školski časopis OŠ „Blagoje Radić“</strong>
+        <span>Nastavnik: Slađan M.</span>
+      </div>
+      <a class="footer-school-link" href="http://osblagojeradiczupce.edu.rs" target="_blank" rel="noopener noreferrer">Sajt škole ↗</a>
+    </div>
+  </footer>
 
   <script type="module" src="/js/dashboard.js"></script>
 </body>

@@ -1,1 +1,1 @@
-V17 - admin auto refresh + poslednja 3 u listi
+V23 - centered footer without BR badge

@@ -69,3 +69,27 @@ Na javnoj početnoj strani nema Admin dugmeta.
 - Posle objave admin stranica se automatski osvežava i upload forma je čista za sledeći PDF.
 - Ako je javni dashboard otvoren u drugom tabu, osvežava se nakon objave/brisanja.
 - Admin lista prikazuje samo poslednja 3 časopisa; dugme „Prikaži sve“ otkriva starije.
+
+## V18
+- Admin lista koristi paginaciju po 3 časopisa; više nema prikaza svih časopisa u dugačkoj koloni.
+- Javni dashboard je redizajniran u svetlijem Apple-inspirisanom stilu za osnovnu školu.
+- Paleta je svedena na neutralnu svetlu osnovu, plavu i nežno svetloplavu.
+
+
+## V19
+- Javni dashboard je redizajniran da sadržaj bude prvenstveno usmeren na časopise.
+- Uklonjeni su veliki odvojeni hero/library paneli.
+- Časopisi su prikazani kao profesionalna Apple-inspired biblioteka sa naslovnicama u prvom planu.
+- Mobilni prikaz ostaje 2 kolone, desktop 4 kolone, uz paginaciju.
+
+
+## V21 izmene
+- Jasniji logo i naziv škole u headeru
+- Apple-like dugme za zvanični sajt škole
+- Stilizovan glass footer
+
+## V22
+- Soft blue minimal stil početne strane.
+- Ispravljeno preklapanje naziva škole i dugmeta na mobilnim ekranima.
+- Kompaktno Apple-like dugme za zvanični sajt škole.
+- Footer je pojednostavljen i prilagođen telefonima.

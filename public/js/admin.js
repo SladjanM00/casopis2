@@ -21,7 +21,8 @@ const logoutBtn = document.getElementById("logoutBtn");
 let magazineFile = null;
 let autoCoverBlob = null;
 let manualCoverBlob = null;
-let showAllMagazines = false;
+let adminPage = 1;
+const ADMIN_ITEMS_PER_PAGE = 3;
 
 function notifyMagazineUpdate() {
   try {
@@ -258,17 +259,19 @@ form.addEventListener("submit", async e => {
   }
 });
 
-async function loadList() {
+async function loadList(page = adminPage) {
   const res = await fetch("/api/magazines");
   const items = await res.json();
   if (!items.length) {
+    adminPage = 1;
     list.innerHTML = '<div class="empty-admin">Još nema objavljenih časopisa.</div>';
     return;
   }
 
-  // API već vraća časopise od najnovijeg ka najstarijem.
-  // U admin panelu podrazumevano prikazujemo samo poslednja 3.
-  const visibleItems = showAllMagazines ? items : items.slice(0, 3);
+  const totalPages = Math.max(1, Math.ceil(items.length / ADMIN_ITEMS_PER_PAGE));
+  adminPage = Math.max(1, Math.min(page, totalPages));
+  const start = (adminPage - 1) * ADMIN_ITEMS_PER_PAGE;
+  const visibleItems = items.slice(start, start + ADMIN_ITEMS_PER_PAGE);
 
   const cards = visibleItems.map(m => {
     const link = `/viewer.html?id=${encodeURIComponent(m.id)}`;
@@ -287,15 +290,21 @@ async function loadList() {
     </article>`;
   }).join("");
 
-  const more = items.length > 3 ? `
-    <div class="admin-list-more">
-      <button class="admin-toggle-list" data-toggle-list type="button">
-        ${showAllMagazines ? "Sakrij starije" : `Prikaži sve (${items.length})`}
-      </button>
-      ${!showAllMagazines ? `<span>Prikazana su poslednja 3 časopisa</span>` : ""}
-    </div>` : "";
+  let pager = "";
+  if (totalPages > 1) {
+    const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1)
+      .map(p => `<button type="button" class="admin-page-btn${p === adminPage ? " active" : ""}" data-admin-page="${p}" aria-label="Strana ${p}">${p}</button>`)
+      .join("");
 
-  list.innerHTML = cards + more;
+    pager = `<nav class="admin-pagination" aria-label="Paginacija objavljenih časopisa">
+      <button type="button" class="admin-page-btn admin-page-arrow" data-admin-page="${adminPage - 1}" ${adminPage === 1 ? "disabled" : ""}>←</button>
+      ${pageButtons}
+      <button type="button" class="admin-page-btn admin-page-arrow" data-admin-page="${adminPage + 1}" ${adminPage === totalPages ? "disabled" : ""}>→</button>
+      <span class="admin-page-info">Prikazana 3 po stranici</span>
+    </nav>`;
+  }
+
+  list.innerHTML = cards + pager;
 }
 
 const escapeHtml = (v = "") => String(v)
@@ -306,10 +315,10 @@ const escapeHtml = (v = "") => String(v)
   .replaceAll("'", "&#039;");
 
 list.addEventListener("click", async e => {
-  const toggle = e.target.closest("[data-toggle-list]");
-  if (toggle) {
-    showAllMagazines = !showAllMagazines;
-    await loadList();
+  const pageBtn = e.target.closest("[data-admin-page]");
+  if (pageBtn && !pageBtn.disabled) {
+    await loadList(Number(pageBtn.dataset.adminPage));
+    list.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
 
@@ -333,7 +342,7 @@ list.addEventListener("click", async e => {
       return;
     }
     notifyMagazineUpdate();
-    loadList();
+    await loadList(adminPage);
   }
 });
 
