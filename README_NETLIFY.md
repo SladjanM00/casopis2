@@ -57,3 +57,9 @@ Admin panel:
 `/admin`
 
 Na javnoj početnoj strani nema Admin dugmeta.
+
+## V16
+- Po 4 časopisa po stranici.
+- Desktop: 4 kartice u jednom redu.
+- Tablet/mobilni: 2x2 grid.
+- Mobilne kartice su kompaktnije: opis je sakriven, informacije su zbijenije, a dugmad su jedno pored drugog.
