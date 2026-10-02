@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Školski časopisi</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-body">
+  <header class="topbar">
+    <a class="brand" href="/"><span>ŠKOLSKI</span><strong>ČASOPISI</strong></a>
+    <div class="top-actions">
+      <a href="/" class="ghost-link">Javni dashboard</a>
+      <button id="logoutBtn" class="ghost-btn">Odjavi se</button>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <section class="admin-panel upload-panel">
+      <div class="section-heading">
+        <p class="eyebrow">NOVI BROJ</p>
+        <h1>Objavi časopis</h1>
+        <p>Prevuci originalni PDF časopisa. Prva strana se automatski koristi kao naslovnica.</p>
+      </div>
+
+      <form id="uploadForm" class="form-stack">
+        <div id="dropZone" class="drop-zone" tabindex="0">
+          <input id="magazineFile" type="file" accept="application/pdf,.pdf" hidden>
+          <div class="drop-icon">＋</div>
+          <strong>Prevuci časopis ovde</strong>
+          <span>ili klikni da izabereš PDF</span>
+          <small>Do 100 MB</small>
+        </div>
+        <div id="selectedFile" class="selected-file" hidden></div>
+
+        <div class="admin-form-grid">
+          <label>Naziv časopisa
+            <input id="title" name="title" placeholder="npr. Srednjoškolac" required>
+          </label>
+          <label>Broj
+            <input id="issue" name="issue" placeholder="npr. Broj 12">
+          </label>
+          <label>Datum / izdanje
+            <input id="date" name="date" placeholder="npr. Decembar 2026">
+          </label>
+          <label class="span-2">Kratak opis
+            <textarea id="description" name="description" rows="3" placeholder="Kratak opis ovog broja..."></textarea>
+          </label>
+        </div>
+
+        <div class="cover-row">
+          <div>
+            <strong>Naslovnica</strong>
+            <p>Prvu PDF stranu automatski koristimo kao naslovnicu. Po želji možeš ručno dodati JPG/PNG.</p>
+            <label class="secondary-btn file-label">Dodaj naslovnicu ručno
+              <input id="coverFile" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            </label>
+          </div>
+          <div id="coverPreview" class="cover-preview"><span>Pregled naslovnice</span></div>
+        </div>
+
+        <div class="quality-note">
+          <strong>Za najbolji kvalitet:</strong> PDF ostaje originalan u Netlify Blobs skladištu i u vieweru se direktno renderuje u visokoj rezoluciji. Ne pretvaramo stranice u kompresovane slike.
+        </div>
+
+        <button id="publishBtn" class="primary-btn" type="submit">Objavi časopis</button>
+        <div id="uploadProgress" class="upload-progress" hidden>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <span id="progressText">Priprema...</span>
+        </div>
+        <p id="uploadMessage" class="form-message"></p>
+      </form>
+    </section>
+
+    <section class="admin-panel list-panel">
+      <div class="section-heading compact">
+        <p class="eyebrow">OBJAVLJENO</p>
+        <h2>Časopisi</h2>
+      </div>
+      <div id="adminList" class="admin-list"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

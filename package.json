@@ -1,0 +1,13 @@
+{
+  "name": "skolski-casopis-netlify",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Skolski digitalni casopis za Netlify Functions + Netlify Blobs",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.0"
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin prijava</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+  <main class="auth-card">
+    <a class="brand brand-center" href="/"><span>ŠKOLSKI</span><strong>ČASOPISI</strong></a>
+    <h1>Admin prijava</h1>
+    <p>Prijavi se da dodaš novi broj časopisa.</p>
+
+    <form id="loginForm" class="form-stack">
+      <label>Korisničko ime
+        <input id="email" name="email" autocomplete="username" required>
+      </label>
+      <label>Šifra
+        <input id="password" type="password" name="password" autocomplete="current-password" required>
+      </label>
+      <button class="primary-btn" type="submit">Prijavi se</button>
+      <p id="loginError" class="form-error" role="alert"></p>
+    </form>
+  </main>
+  <script type="module" src="/js/login.js"></script>
+</body>
+</html>

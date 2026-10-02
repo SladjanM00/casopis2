@@ -1,0 +1,8 @@
+V15 — 2026-10-02
+- Netlify-ready struktura (public + netlify/functions)
+- Netlify Blobs backend zadržan iz stabilne V14 verzije
+- 4 časopisa po stranici
+- Desktop: 4 kartice u jednom redu
+- Tablet/mobilni: 2x2 grid
+- Paginacija ispod grida
+- Najnoviji časopisi se prikazuju prvi kada API sadrži timestamp

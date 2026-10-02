@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Časopis</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+</head>
+<body class="viewer-body">
+  <div class="viewer-shell">
+    <header class="viewer-bar">
+      <a class="back-link" href="/">← Svi časopisi</a>
+      <div class="viewer-title">
+        <strong id="viewerTitle">Časopis</strong>
+        <span id="viewerMeta"></span>
+      </div>
+      <div class="viewer-actions">
+        <button id="shareBtn">Podeli</button>
+        <button id="fullscreenBtn">⛶ Fullscreen</button>
+      </div>
+    </header>
+
+    <main class="viewer-main">
+      <section id="bookStage" class="book-stage">
+        <div id="loading" class="viewer-loading">
+          <div class="spinner"></div>
+          <strong id="loadingTitle">Učitavanje časopisa...</strong>
+          <span id="loadingDetail"></span>
+        </div>
+        <div id="book"></div>
+      </section>
+      <div class="viewer-controls">
+        <button id="prevBtn" class="round-btn">←</button>
+        <span id="pageCounter">Strana 1 / 1</span>
+        <button id="nextBtn" class="round-btn">→</button>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/js/viewer.js"></script>
+</body>
+</html>

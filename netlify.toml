@@ -1,0 +1,72 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/logout"
+  to = "/.netlify/functions/logout"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/session"
+  to = "/.netlify/functions/session"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/magazines"
+  to = "/.netlify/functions/magazines"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/magazine"
+  to = "/.netlify/functions/magazine"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/upload-chunk"
+  to = "/.netlify/functions/upload-chunk"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/upload-cover"
+  to = "/.netlify/functions/upload-cover"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/upload-cleanup"
+  to = "/.netlify/functions/upload-cleanup"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/file-chunk"
+  to = "/.netlify/functions/file-chunk"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/cover"
+  to = "/.netlify/functions/cover"
+  status = 200
+  force = true

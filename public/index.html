@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Školski časopis - Blagoje Radić</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-body">
+  <header class="topbar">
+    <a class="brand home-brand" href="/">
+      <span class="school-logo-wrap">
+        <img src="/assets/logo-blagoje-radic.png" alt="Logo OŠ Blagoje Radić">
+      </span>
+      <span class="school-brand-text">Školski časopis - Blagoje Radić</span>
+    </a>
+  </header>
+
+  <main class="dashboard">
+    <section class="hero">
+      <p class="eyebrow">DIGITALNA BIBLIOTEKA</p>
+      <h1>Izaberi broj časopisa</h1>
+      <p>Klikni na naslovnicu da otvoriš časopis. Svaki broj ima svoj poseban link za deljenje.</p>
+    </section>
+
+    <section id="magazineGrid" class="magazine-grid" aria-live="polite"></section>
+    <nav id="pagination" class="pagination" aria-label="Paginacija časopisa"></nav>
+    <div id="emptyState" class="empty-state" hidden>Još nema objavljenih časopisa.</div>
+  </main>
+
+  <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>
