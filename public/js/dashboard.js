@@ -105,3 +105,16 @@ document.addEventListener("click", async e => {
 loadMagazines().catch(err => {
   grid.innerHTML = `<div class="error-card">${escapeHtml(err.message)}</div>`;
 });
+
+
+// Ako admin objavi ili obriše časopis u drugom tabu, javni dashboard se odmah osvežava.
+try {
+  const magazineChannel = new BroadcastChannel("school-magazines");
+  magazineChannel.addEventListener("message", e => {
+    if (e.data?.type === "magazines-updated") location.reload();
+  });
+} catch {}
+
+window.addEventListener("storage", e => {
+  if (e.key === "school-magazines-updated") location.reload();
+});

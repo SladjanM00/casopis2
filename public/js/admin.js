@@ -21,6 +21,16 @@ const logoutBtn = document.getElementById("logoutBtn");
 let magazineFile = null;
 let autoCoverBlob = null;
 let manualCoverBlob = null;
+let showAllMagazines = false;
+
+function notifyMagazineUpdate() {
+  try {
+    const channel = new BroadcastChannel("school-magazines");
+    channel.postMessage({ type: "magazines-updated", at: Date.now() });
+    channel.close();
+  } catch {}
+  try { localStorage.setItem("school-magazines-updated", String(Date.now())); } catch {}
+}
 
 const session = await fetch("/api/session").then(r => r.json()).catch(() => ({ authenticated: false }));
 if (!session.authenticated) location.href = "/login.html";
@@ -231,15 +241,12 @@ form.addEventListener("submit", async e => {
 
     progressBar.style.width = "100%";
     progressText.textContent = "Objavljeno ✓";
-    message.textContent = "Časopis je uspešno objavljen.";
-    form.reset();
-    magazineFile = null;
-    autoCoverBlob = null;
-    manualCoverBlob = null;
-    selectedFile.hidden = true;
-    coverPreview.innerHTML = "<span>Pregled naslovnice</span>";
-    await loadList();
-    setTimeout(() => { progress.hidden = true; progressBar.style.width = "0"; }, 1300);
+    message.textContent = "Časopis je uspešno objavljen. Pripremam formu za sledeći broj...";
+
+    // Obavesti javni dashboard (ako je otvoren u drugom tabu/prozoru)
+    // i zatim osveži admin stranicu da prethodni PDF više ne ostane aktivan.
+    notifyMagazineUpdate();
+    setTimeout(() => location.reload(), 700);
   } catch (err) {
     console.error(err);
     message.textContent = err.message;
@@ -258,7 +265,12 @@ async function loadList() {
     list.innerHTML = '<div class="empty-admin">Još nema objavljenih časopisa.</div>';
     return;
   }
-  list.innerHTML = items.map(m => {
+
+  // API već vraća časopise od najnovijeg ka najstarijem.
+  // U admin panelu podrazumevano prikazujemo samo poslednja 3.
+  const visibleItems = showAllMagazines ? items : items.slice(0, 3);
+
+  const cards = visibleItems.map(m => {
     const link = `/viewer.html?id=${encodeURIComponent(m.id)}`;
     const cover = m.coverUrl ? `<img src="${m.coverUrl}" alt="">` : `<div class="mini-fallback">ČASOPIS</div>`;
     return `<article class="admin-item" data-id="${m.id}">
@@ -274,6 +286,16 @@ async function loadList() {
       </div>
     </article>`;
   }).join("");
+
+  const more = items.length > 3 ? `
+    <div class="admin-list-more">
+      <button class="admin-toggle-list" data-toggle-list type="button">
+        ${showAllMagazines ? "Sakrij starije" : `Prikaži sve (${items.length})`}
+      </button>
+      ${!showAllMagazines ? `<span>Prikazana su poslednja 3 časopisa</span>` : ""}
+    </div>` : "";
+
+  list.innerHTML = cards + more;
 }
 
 const escapeHtml = (v = "") => String(v)
@@ -284,6 +306,13 @@ const escapeHtml = (v = "") => String(v)
   .replaceAll("'", "&#039;");
 
 list.addEventListener("click", async e => {
+  const toggle = e.target.closest("[data-toggle-list]");
+  if (toggle) {
+    showAllMagazines = !showAllMagazines;
+    await loadList();
+    return;
+  }
+
   const copy = e.target.closest("[data-copy]");
   if (copy) {
     const url = new URL(copy.dataset.copy, location.href).href;
@@ -303,6 +332,7 @@ list.addEventListener("click", async e => {
       alert(data.error || "Brisanje nije uspelo.");
       return;
     }
+    notifyMagazineUpdate();
     loadList();
   }
 });

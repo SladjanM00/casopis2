@@ -214,3 +214,32 @@
   .card-content { padding: 8px; }
   .primary-link, .copy-link-btn { font-size: .64rem; padding: 7px 3px; }
 }
+
+
+/* V17: admin lista je kompaktna — prikazuju se poslednja 3 broja, ostali na zahtev */
+.admin-list-more {
+  display: grid;
+  gap: 8px;
+  padding-top: 4px;
+  text-align: center;
+}
+
+.admin-toggle-list {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 11px 14px;
+  background: rgba(255,255,255,.055);
+  color: #fff;
+  font-weight: 650;
+}
+
+.admin-toggle-list:hover {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.22);
+}
+
+.admin-list-more span {
+  font-size: .76rem;
+  opacity: .48;
+}

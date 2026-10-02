@@ -63,3 +63,9 @@ Na javnoj početnoj strani nema Admin dugmeta.
 - Desktop: 4 kartice u jednom redu.
 - Tablet/mobilni: 2x2 grid.
 - Mobilne kartice su kompaktnije: opis je sakriven, informacije su zbijenije, a dugmad su jedno pored drugog.
+
+
+## V17
+- Posle objave admin stranica se automatski osvežava i upload forma je čista za sledeći PDF.
+- Ako je javni dashboard otvoren u drugom tabu, osvežava se nakon objave/brisanja.
+- Admin lista prikazuje samo poslednja 3 časopisa; dugme „Prikaži sve“ otkriva starije.

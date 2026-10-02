@@ -1,1 +1,1 @@
-V16 - compact mobile magazine cards
+V17 - admin auto refresh + poslednja 3 u listi
